@@ -50,10 +50,6 @@ class EventViewSet(ViewSet):
         
         image.close()
         
-        timeout_seconds = 30
-        try:
-            response = requests.post('https://ictrobot.hknu.ac.kr:8097/api/Event/Create', json=event, timeout=timeout_seconds)
-        except requests.exceptions.Timeout:
-            return Response({'Error': 'Request timed out after {timeout_seconds} seconds.'}, status=status.HTTP_504_GATEWAY_TIMEOUT)
-        
-        return Response(response.json(), status=status.HTTP_201_CREATED)
+        serializer = self.serializer_class(data=event)
+        serializer.is_valid(raise_exception=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
