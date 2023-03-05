@@ -28,7 +28,7 @@ class EventViewSet(ViewSet):
         event_bodies = []
         for result in results:
             for bbox, cls in zip(result.boxes.xyxy, result.boxes.cls):
-                left, top, right, bottom = bbox.tolist()        
+                left, top, right, bottom = bbox.tolist()
                 event_bodies.append({
                     'Label': cls.item(),
                     'Left': left,
