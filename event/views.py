@@ -66,6 +66,7 @@ class EventViewSet(ViewSet):
             serializer = self.serializer_class(data=event)
             serializer.is_valid(raise_exception=True)
         except ValidationError:
+            logging.info('Failed to serialize data.')
             return Response({'Error': 'Failed to serialize data.'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
         return Response(serializer.data, status=status.HTTP_200_OK)
