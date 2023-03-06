@@ -53,5 +53,4 @@ class EventViewSet(ViewSet):
         
         serializer = self.serializer_class(data=event)
         serializer.is_valid(raise_exception=True)
-        logging.info(serializer.data)
         return Response(serializer.data, status=status.HTTP_200_OK)
