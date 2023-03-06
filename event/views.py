@@ -52,4 +52,5 @@ class EventViewSet(ViewSet):
         
         serializer = self.serializer_class(data=event)
         serializer.is_valid(raise_exception=True)
+        print(f"리턴된 리스폰즈: {serializer.data}")
         return Response(serializer.data, status=status.HTTP_200_OK)
