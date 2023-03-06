@@ -5,6 +5,7 @@ from PIL import Image
 from event.serializers import EventSerializer
 from rest_framework import status
 import requests
+import logging
 
 
 class EventViewSet(ViewSet):
@@ -52,5 +53,5 @@ class EventViewSet(ViewSet):
         
         serializer = self.serializer_class(data=event)
         serializer.is_valid(raise_exception=True)
-        print(serializer.data)
+        logging.info(serializer.data)
         return Response(serializer.data, status=status.HTTP_200_OK)
