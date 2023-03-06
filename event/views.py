@@ -4,8 +4,6 @@ from ultralytics import YOLO
 from PIL import Image
 from event.serializers import EventSerializer
 from rest_framework import status
-import requests
-import logging
 
 
 class EventViewSet(ViewSet):
