@@ -5,6 +5,7 @@ from PIL import Image
 from event.serializers import EventSerializer
 from rest_framework import status
 from rest_framework.exceptions import ValidationError
+import logging
 
 
 class EventViewSet(ViewSet):
@@ -33,6 +34,7 @@ class EventViewSet(ViewSet):
         try:
             results = self.model.predict(source=image)
         except Exception as e:
+            logging.info('Failed to get model predictions')
             return Response({'Error': 'Failed to get model predictions.'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
         event_bodies = []
